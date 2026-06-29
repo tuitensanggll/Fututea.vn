@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -479,6 +479,8 @@
             <input type="tel" id="user-phone" class="info-input" placeholder="090...">
             <label>Địa chỉ giao hàng</label>
             <textarea id="user-address" class="info-input" style="height:80px;resize:none;" placeholder="Số nhà, tên đường..."></textarea>
+            <label>Ghi chú <span style="color:rgba(255,255,255,0.4);font-size:12px;">(không bắt buộc)</span></label>
+            <textarea id="user-note" class="info-input" style="height:65px;resize:none;" placeholder="Ví dụ: Ít đá, ít đường, giao sau 18h..."></textarea>
             <button class="btn-checkout" onclick="proceedToPayment()">
                 <i class="fas fa-qrcode" style="margin-right:8px"></i>Tiếp tục quét mã QR
             </button>
@@ -850,6 +852,7 @@
         const customerName = document.getElementById('user-name').value.trim();
         const customerPhone = document.getElementById('user-phone').value.trim();
         const customerAddress = document.getElementById('user-address').value.trim();
+        const customerNote = document.getElementById('user-note').value.trim();
 
         // Tạo đơn hàng
         const orderId = 'DH' + Date.now();
@@ -858,6 +861,7 @@
             customerName: customerName,
             phone: customerPhone,
             address: customerAddress,
+            note: customerNote,
             items: cart.map(i => ({ name: i.name, price: i.price })),
             total: total,
             itemCount: cart.length,
@@ -889,6 +893,7 @@
         document.getElementById('user-name').value = '';
         document.getElementById('user-phone').value = '';
         document.getElementById('user-address').value = '';
+        document.getElementById('user-note').value = '';
         showToast('Thanh toán thành công! Futu Tea sẽ giao hàng sớm nhất 🎉');
     };
 
