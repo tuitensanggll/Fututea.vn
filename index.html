@@ -581,6 +581,8 @@
 
         .swiper-slide{
             width:180px;
+            will-change:transform, opacity;
+            contain:layout paint;
         }
 
         .swiper{
@@ -1303,7 +1305,7 @@ slidesPerView:"auto",
 
 spaceBetween:22,
 
-loop:true,
+loop:false,
 
 speed:650,
 
@@ -1330,14 +1332,24 @@ navigation:{
 },
 
 on:{
-    progress(sw){
+    afterInit(sw){
         sw.slides.forEach(slideEl=>{
-            const p = Math.min(Math.max(slideEl.progress,-2),2);
-            const abs = Math.abs(p);
-            const scale = 1 - Math.min(abs*0.14,0.28);
-            const opacity = 1 - Math.min(abs*0.45,0.55);
-            slideEl.style.transform = `scale(${scale})`;
-            slideEl.style.opacity = opacity;
+            slideEl.style.willChange = "transform, opacity";
+        });
+    },
+    progress(sw){
+        if (sw._rafPending) return;
+        sw._rafPending = true;
+        requestAnimationFrame(()=>{
+            sw._rafPending = false;
+            sw.slides.forEach(slideEl=>{
+                const p = Math.min(Math.max(slideEl.progress,-2),2);
+                const abs = Math.abs(p);
+                const scale = 1 - Math.min(abs*0.14,0.28);
+                const opacity = 1 - Math.min(abs*0.45,0.55);
+                slideEl.style.transform = `scale(${scale})`;
+                slideEl.style.opacity = opacity;
+            });
         });
     },
     setTransition(sw,duration){
