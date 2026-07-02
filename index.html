@@ -497,63 +497,90 @@
 
         /* ---- phone-mockup video card ---- */
         .video-card{
-            background:#000;
-            border-radius:24px;
+            background:linear-gradient(155deg,#2a2a2e,#0a0a0c 40%);
+            border-radius:26px;
             overflow:hidden;
             position:relative;
             aspect-ratio:9/16;
-            padding:6px;
+            padding:7px;
             box-shadow:
                 0 1px 0 rgba(255,255,255,.5) inset,
-                0 18px 36px -16px rgba(0,0,0,.32),
-                0 6px 14px -8px rgba(0,0,0,.22);
-            transition:transform .6s cubic-bezier(.22,1,.36,1), box-shadow .6s cubic-bezier(.22,1,.36,1);
-            will-change:transform;
+                0 20px 40px -16px rgba(0,0,0,.35),
+                0 6px 16px -8px rgba(0,0,0,.25);
         }
+        /* outer metallic edge */
         .video-card::after{
-            /* bezel frame */
             content:"";
             position:absolute; inset:0;
-            border-radius:24px;
-            border:1px solid rgba(255,255,255,.14);
-            box-shadow:inset 0 0 0 4px #0a0a0a;
+            border-radius:26px;
+            border:1px solid rgba(255,255,255,.16);
+            box-shadow:
+                inset 0 0 0 3px #050505,
+                inset 0 1px 1px rgba(255,255,255,.25);
             pointer-events:none;
-            z-index:2;
+            z-index:3;
         }
+        /* dynamic-island style notch */
         .video-card::before{
-            /* dynamic-island style notch, purely decorative */
             content:"";
             position:absolute;
-            top:12px; left:50%;
-            width:44px; height:13px;
-            background:#0a0a0a;
+            top:13px; left:50%;
+            width:46px; height:14px;
+            background:#050505;
             border-radius:14px;
             transform:translateX(-50%);
-            z-index:3;
+            z-index:4;
             pointer-events:none;
+            box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+        }
+        /* side hardware buttons for realism */
+        .video-card .btn-side{
+            position:absolute;
+            background:linear-gradient(180deg,#3a3a3e,#131315);
+            z-index:1;
+            pointer-events:none;
+        }
+        .video-card .btn-side.power{
+            right:-2px; top:26%; width:3px; height:13%;
+            border-radius:0 3px 3px 0;
+        }
+        .video-card .btn-side.vol-up{
+            left:-2px; top:20%; width:3px; height:8%;
+            border-radius:3px 0 0 3px;
+        }
+        .video-card .btn-side.vol-down{
+            left:-2px; top:30%; width:3px; height:8%;
+            border-radius:3px 0 0 3px;
+        }
+
+        .video-card .screen{
+            position:relative;
+            width:100%; height:100%;
+            border-radius:19px;
+            overflow:hidden;
+            background:#111;
+            z-index:2;
         }
         .video-card .tiktok-embed,
         .video-card blockquote{
             width:100%; height:100%;
-            border-radius:18px;
-            overflow:hidden;
+            display:block;
             background:#111;
+        }
+        /* subtle glass reflection across the glass */
+        .video-card .screen::before{
+            content:"";
+            position:absolute;
+            top:0; left:-30%;
+            width:55%; height:100%;
+            background:linear-gradient(115deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 45%);
+            transform:skewX(-14deg);
+            pointer-events:none;
+            z-index:5;
         }
 
         .swiper-slide{
             width:180px;
-            transition:opacity .5s ease;
-        }
-        .swiper-slide .video-card{
-            transform:scale(.92);
-            transition:transform .6s cubic-bezier(.22,1,.36,1);
-        }
-        .swiper-slide-active .video-card{
-            transform:scale(1);
-            box-shadow:
-                0 1px 0 rgba(255,255,255,.5) inset,
-                0 40px 80px -20px rgba(0,0,0,.4),
-                0 14px 30px -10px rgba(0,0,0,.3);
         }
 
         .swiper{
@@ -660,7 +687,6 @@
             .tiktok-eyebrow, .tiktok-showcase h2, .tiktok-showcase > p{
                 animation:none; opacity:1; transform:none;
             }
-            .video-card, .swiper-slide .video-card{ transition:none; }
         }
 
         @media (max-width:480px){
@@ -782,7 +808,10 @@
 <div class="swiper-slide">
 
 <div class="video-card">
-
+<span class="btn-side power"></span>
+<span class="btn-side vol-up"></span>
+<span class="btn-side vol-down"></span>
+<div class="screen">
 <blockquote
 class="tiktok-embed"
 cite="https://www.tiktok.com/@trachanh_futu/video/7641521157715365141"
@@ -791,6 +820,7 @@ data-video-id="7641521157715365141">
 <section></section>
 
 </blockquote>
+</div>
 
 </div>
 
@@ -799,7 +829,10 @@ data-video-id="7641521157715365141">
 <div class="swiper-slide">
 
 <div class="video-card">
-
+<span class="btn-side power"></span>
+<span class="btn-side vol-up"></span>
+<span class="btn-side vol-down"></span>
+<div class="screen">
 <blockquote
 class="tiktok-embed"
 cite="https://www.tiktok.com/@trachanh_futu/video/7641213184141053205?is_from_webapp=1&sender_device=pc"
@@ -808,6 +841,7 @@ data-video-id="7641213184141053205">
 <section></section>
 
 </blockquote>
+</div>
 
 </div>
 
@@ -816,7 +850,10 @@ data-video-id="7641213184141053205">
 <div class="swiper-slide">
 
 <div class="video-card">
-
+<span class="btn-side power"></span>
+<span class="btn-side vol-up"></span>
+<span class="btn-side vol-down"></span>
+<div class="screen">
 <blockquote
 class="tiktok-embed"
 cite="https://www.tiktok.com/@trachanh_futu/video/7636257245105245448"
@@ -825,6 +862,7 @@ data-video-id="7636257245105245448">
 <section></section>
 
 </blockquote>
+</div>
 
 </div>
 
@@ -1255,7 +1293,7 @@ data-video-id="7636257245105245448">
 
 const swiper=new Swiper(".mySwiper",{
 
-effect:"coverflow",
+effect:"slide",
 
 grabCursor:true,
 
@@ -1263,27 +1301,21 @@ centeredSlides:true,
 
 slidesPerView:"auto",
 
+spaceBetween:22,
+
 loop:true,
 
-coverflowEffect:{
+speed:650,
 
-rotate:15,
-
-stretch:0,
-
-depth:180,
-
-modifier:1,
-
-slideShadows:false
-
-},
+watchSlidesProgress:true,
 
 autoplay:{
 
-delay:4500,
+delay:4200,
 
-disableOnInteraction:false
+disableOnInteraction:false,
+
+pauseOnMouseEnter:true
 
 },
 
@@ -1295,8 +1327,26 @@ pagination:{
 navigation:{
     nextEl:".swiper-button-next",
     prevEl:".swiper-button-prev"
-}
+},
 
+on:{
+    progress(sw){
+        sw.slides.forEach(slideEl=>{
+            const p = Math.min(Math.max(slideEl.progress,-2),2);
+            const abs = Math.abs(p);
+            const scale = 1 - Math.min(abs*0.14,0.28);
+            const opacity = 1 - Math.min(abs*0.45,0.55);
+            slideEl.style.transform = `scale(${scale})`;
+            slideEl.style.opacity = opacity;
+        });
+    },
+    setTransition(sw,duration){
+        sw.slides.forEach(slideEl=>{
+            slideEl.style.transitionDuration = `${duration}ms`;
+            slideEl.style.transitionTimingFunction = "cubic-bezier(.22,1,.36,1)";
+        });
+    }
+}
 
 });
 
