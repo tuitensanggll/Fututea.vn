@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Futu Tea Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <style>
+        .swiper-wrapper{
+     transition-timing-function:cubic-bezier(.22,.61,.36,1);}
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
@@ -405,6 +409,265 @@
             #cart-view, #history-view, #info-view, #founder-view { max-width: 100%; }
             #chatbot-view { width: 290px; height: 380px; }
         }
+
+        /* ========================================= */
+        /* FUTU TIKTOK SHOWCASE — Apple/Samsung style */
+        /* ========================================= */
+
+        .tiktok-showcase{
+            --ink:#1d1d1f;
+            --ink-soft:#6e6e73;
+            --hairline:rgba(0,0,0,.08);
+            --accent:#0071e3;
+            padding:40px 6% 36px;
+            background:#fbfbfd;
+            text-align:center;
+            position:relative;
+            overflow:hidden;
+            font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Helvetica,Arial,sans-serif;
+            color:var(--ink);
+            isolation:isolate;
+        }
+
+        /* soft studio-light backdrop, not a colored blob */
+        .tiktok-showcase::before{
+            content:"";
+            position:absolute;
+            inset:0;
+            background:
+                radial-gradient(ellipse 420px 240px at 50% -5%, rgba(0,113,227,.05), transparent 65%),
+                radial-gradient(ellipse 340px 240px at 88% 105%, rgba(254,44,85,.035), transparent 60%);
+            pointer-events:none;
+            z-index:0;
+        }
+
+        .tiktok-eyebrow{
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            font-size:12px;
+            font-weight:600;
+            letter-spacing:.08em;
+            text-transform:uppercase;
+            color:var(--ink-soft);
+            margin-bottom:10px;
+            position:relative;
+            z-index:1;
+            opacity:0;
+            transform:translateY(14px);
+            animation:revealUp .9s cubic-bezier(.22,1,.36,1) .05s forwards;
+        }
+        .tiktok-eyebrow::before{
+            content:"";
+            width:7px; height:7px; border-radius:50%;
+            background:linear-gradient(135deg,#25f4ee,#fe2c55);
+            display:inline-block;
+        }
+
+        .tiktok-showcase h2{
+            font-size:clamp(24px,3.4vw,34px);
+            font-weight:600;
+            letter-spacing:-.02em;
+            line-height:1.15;
+            color:var(--ink);
+            margin-bottom:8px;
+            position:relative;
+            z-index:1;
+            opacity:0;
+            transform:translateY(18px);
+            animation:revealUp .9s cubic-bezier(.22,1,.36,1) .12s forwards;
+        }
+
+        .tiktok-showcase > p{
+            color:var(--ink-soft);
+            font-size:clamp(14px,1.4vw,16px);
+            font-weight:400;
+            letter-spacing:-.01em;
+            margin-bottom:28px;
+            position:relative;
+            z-index:1;
+            opacity:0;
+            transform:translateY(18px);
+            animation:revealUp .9s cubic-bezier(.22,1,.36,1) .18s forwards;
+        }
+
+        @keyframes revealUp{
+            to{ opacity:1; transform:translateY(0); }
+        }
+
+        /* ---- phone-mockup video card ---- */
+        .video-card{
+            background:#000;
+            border-radius:24px;
+            overflow:hidden;
+            position:relative;
+            aspect-ratio:9/16;
+            padding:6px;
+            box-shadow:
+                0 1px 0 rgba(255,255,255,.5) inset,
+                0 18px 36px -16px rgba(0,0,0,.32),
+                0 6px 14px -8px rgba(0,0,0,.22);
+            transition:transform .6s cubic-bezier(.22,1,.36,1), box-shadow .6s cubic-bezier(.22,1,.36,1);
+            will-change:transform;
+        }
+        .video-card::after{
+            /* bezel frame */
+            content:"";
+            position:absolute; inset:0;
+            border-radius:24px;
+            border:1px solid rgba(255,255,255,.14);
+            box-shadow:inset 0 0 0 4px #0a0a0a;
+            pointer-events:none;
+            z-index:2;
+        }
+        .video-card::before{
+            /* dynamic-island style notch, purely decorative */
+            content:"";
+            position:absolute;
+            top:12px; left:50%;
+            width:44px; height:13px;
+            background:#0a0a0a;
+            border-radius:14px;
+            transform:translateX(-50%);
+            z-index:3;
+            pointer-events:none;
+        }
+        .video-card .tiktok-embed,
+        .video-card blockquote{
+            width:100%; height:100%;
+            border-radius:18px;
+            overflow:hidden;
+            background:#111;
+        }
+
+        .swiper-slide{
+            width:180px;
+            transition:opacity .5s ease;
+        }
+        .swiper-slide .video-card{
+            transform:scale(.92);
+            transition:transform .6s cubic-bezier(.22,1,.36,1);
+        }
+        .swiper-slide-active .video-card{
+            transform:scale(1);
+            box-shadow:
+                0 1px 0 rgba(255,255,255,.5) inset,
+                0 40px 80px -20px rgba(0,0,0,.4),
+                0 14px 30px -10px rgba(0,0,0,.3);
+        }
+
+        .swiper{
+            width:100%;
+            padding:8px 0 30px;
+            position:relative;
+            z-index:1;
+        }
+
+        /* ---- Apple-style pagination: pill dots ---- */
+        .tiktok-showcase .swiper-pagination{
+            position:relative;
+            margin-top:8px;
+            display:flex;
+            justify-content:center;
+            gap:7px;
+        }
+        .tiktok-showcase .swiper-pagination-bullet{
+            width:7px; height:7px;
+            background:#d2d2d7;
+            opacity:1;
+            border-radius:50%;
+            transition:width .35s cubic-bezier(.22,1,.36,1), background .35s;
+            margin:0 !important;
+        }
+        .tiktok-showcase .swiper-pagination-bullet-active{
+            width:22px;
+            border-radius:5px;
+            background:var(--ink);
+        }
+
+        /* ---- Apple-style nav arrows: quiet glass circles ---- */
+        .swiper-button-next,
+        .swiper-button-prev{
+            width:34px;
+            height:34px;
+            background:rgba(255,255,255,.8);
+            backdrop-filter:blur(20px);
+            -webkit-backdrop-filter:blur(20px);
+            border:1px solid var(--hairline);
+            border-radius:50%;
+            color:var(--ink);
+            box-shadow:0 4px 18px rgba(0,0,0,.08);
+            transition:transform .3s cubic-bezier(.22,1,.36,1), background .3s, box-shadow .3s;
+            top:42%;
+        }
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover{
+            transform:scale(1.08);
+            background:#fff;
+            box-shadow:0 8px 24px rgba(0,0,0,.14);
+        }
+        .swiper-button-next:active,
+        .swiper-button-prev:active{ transform:scale(.96); }
+        .swiper-button-next::after,
+        .swiper-button-prev::after{
+            font-size:12px;
+            font-weight:700;
+        }
+
+        /* ---- CTA: solid Apple pill + quiet secondary link ---- */
+        .tiktok-cta-row{
+            position:relative;
+            z-index:1;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:8px;
+            margin-top:2px;
+        }
+
+        .follow-tiktok{
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            background:var(--ink);
+            color:#fff;
+            font-size:13px;
+            font-weight:500;
+            letter-spacing:-.01em;
+            padding:9px 20px;
+            border-radius:980px;
+            text-decoration:none;
+            transition:background .3s cubic-bezier(.22,1,.36,1), transform .25s cubic-bezier(.22,1,.36,1);
+        }
+        .follow-tiktok i{ font-size:13px; }
+        .follow-tiktok:hover{
+            background:#fe2c55;
+            transform:translateY(-2px);
+        }
+        .follow-tiktok:active{ transform:translateY(0) scale(.98); }
+
+        .tiktok-subtext{
+            font-size:12px;
+            color:var(--ink-soft);
+        }
+        .tiktok-subtext a{
+            color:var(--accent);
+            text-decoration:none;
+        }
+        .tiktok-subtext a:hover{ text-decoration:underline; }
+
+        @media (prefers-reduced-motion: reduce){
+            .tiktok-eyebrow, .tiktok-showcase h2, .tiktok-showcase > p{
+                animation:none; opacity:1; transform:none;
+            }
+            .video-card, .swiper-slide .video-card{ transition:none; }
+        }
+
+        @media (max-width:480px){
+            .tiktok-showcase{ padding:28px 6% 26px; }
+            .swiper-slide{ width:150px; }
+            .swiper-button-next,.swiper-button-prev{ display:none; }
+        }
     </style>
 </head>
 <body>
@@ -503,6 +766,91 @@
 </div><!-- end .main-content -->
 
 <!-- FOOTER -->
+
+<section class="tiktok-showcase">
+
+<span class="tiktok-eyebrow">Futu Tea trên TikTok</span>
+
+<h2>Xem chúng tôi<br>pha những gì bạn yêu thích</h2>
+
+<p>Hậu trường, công thức và khoảnh khắc mỗi ngày tại quán.</p>
+
+<div class="swiper mySwiper">
+
+<div class="swiper-wrapper">
+
+<div class="swiper-slide">
+
+<div class="video-card">
+
+<blockquote
+class="tiktok-embed"
+cite="https://www.tiktok.com/@trachanh_futu/video/7641521157715365141"
+data-video-id="7641521157715365141">
+
+<section></section>
+
+</blockquote>
+
+</div>
+
+</div>
+
+<div class="swiper-slide">
+
+<div class="video-card">
+
+<blockquote
+class="tiktok-embed"
+cite="https://www.tiktok.com/@trachanh_futu/video/7641213184141053205?is_from_webapp=1&sender_device=pc"
+data-video-id="7641213184141053205">
+
+<section></section>
+
+</blockquote>
+
+</div>
+
+</div>
+
+<div class="swiper-slide">
+
+<div class="video-card">
+
+<blockquote
+class="tiktok-embed"
+cite="https://www.tiktok.com/@trachanh_futu/video/7636257245105245448"
+data-video-id="7636257245105245448">
+
+<section></section>
+
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="swiper-pagination"></div>
+
+<div class="swiper-button-prev"></div>
+
+<div class="swiper-button-next"></div>
+
+
+</div>
+
+<div class="tiktok-cta-row">
+    <a class="follow-tiktok"
+       href="https://www.tiktok.com/@trachanh_futu"
+       target="_blank">
+        <i class="fab fa-tiktok"></i>Theo dõi @trachanh_futu
+    </a>
+    <span class="tiktok-subtext">hoặc <a href="https://www.tiktok.com/@trachanh_futu" target="_blank">xem tất cả video</a></span>
+</div>
+
+</section>
 <footer>
     <div class="footer-section">
         <h4><i class="fas fa-store"></i> Phương Châm</h4>
@@ -562,7 +910,6 @@
 
 <!-- TOAST -->
 <div id="toast"></div>
-
 <script>
     /* ========== DỮ LIỆU SẢN PHẨM ========== */
     const products = [
@@ -899,6 +1246,60 @@
     };
 
     console.log('%c🍵 FUTU TEA - Firebase Ready!', 'color: #1abc9c; font-size: 14px; font-weight: bold;');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script async src="https://www.tiktok.com/embed.js"></script>
+
+<script>
+
+const swiper=new Swiper(".mySwiper",{
+
+effect:"coverflow",
+
+grabCursor:true,
+
+centeredSlides:true,
+
+slidesPerView:"auto",
+
+loop:true,
+
+coverflowEffect:{
+
+rotate:15,
+
+stretch:0,
+
+depth:180,
+
+modifier:1,
+
+slideShadows:false
+
+},
+
+autoplay:{
+
+delay:4500,
+
+disableOnInteraction:false
+
+},
+
+pagination:{
+    el:".swiper-pagination",
+    clickable:true
+},
+
+navigation:{
+    nextEl:".swiper-button-next",
+    prevEl:".swiper-button-prev"
+}
+
+
+});
+
 </script>
 </body>
 </html>
