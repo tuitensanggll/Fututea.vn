@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="vi">
+  <body>
+    <div id="ai-background">
+
+    <div class="aurora aurora-1"></div>
+    <div class="aurora aurora-2"></div>
+    <div class="aurora aurora-3"></div>
+    <div class="aurora aurora-4"></div>
+
+    <div class="glow glow-left"></div>
+    <div class="glow glow-right"></div>
+
+    <div class="mesh mesh-1"></div>
+    <div class="mesh mesh-2"></div>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="noise"></div>
+
+    <div class="spotlight"></div>
+
+    <div class="grid-overlay"></div>
+
+    <div class="vignette"></div>
+
+</div>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Futu Tea Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="background.css">
+    
     <style>
         .swiper-wrapper{
      transition-timing-function:cubic-bezier(.22,.61,.36,1);}
@@ -14,9 +43,7 @@
 
         body {
             font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(-45deg, #142a52, #2a5298, #23a6d5, #1abc9c);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+            background:linear-gradient(-45deg, #142a52, #2a5298, #23a6d5, #1abc9c);
             min-height: 100vh;
             color: white;
             overflow-x: hidden;
@@ -420,7 +447,7 @@
             --hairline:rgba(0,0,0,.08);
             --accent:#0071e3;
             padding:40px 6% 36px;
-            background:#fbfbfd;
+            background:
             text-align:center;
             position:relative;
             overflow:hidden;
@@ -444,17 +471,17 @@
         .tiktok-eyebrow{
             display:inline-flex;
             align-items:center;
-            gap:8px;
+            gap:10px;
             font-size:12px;
-            font-weight:600;
+            font-weight:800;
             letter-spacing:.08em;
             text-transform:uppercase;
-            color:var(--ink-soft);
+            color:#00000;
             margin-bottom:10px;
             position:relative;
             z-index:1;
             opacity:0;
-            transform:translateY(14px);
+            transform:translateY(20px);
             animation:revealUp .9s cubic-bezier(.22,1,.36,1) .05s forwards;
         }
         .tiktok-eyebrow::before{
@@ -466,10 +493,10 @@
 
         .tiktok-showcase h2{
             font-size:clamp(24px,3.4vw,34px);
-            font-weight:600;
+            font-weight:800;
             letter-spacing:-.02em;
             line-height:1.15;
-            color:var(--ink);
+            color:#00000;
             margin-bottom:8px;
             position:relative;
             z-index:1;
@@ -479,9 +506,9 @@
         }
 
         .tiktok-showcase > p{
-            color:var(--ink-soft);
+            color:#00000;
             font-size:clamp(14px,1.4vw,16px);
-            font-weight:400;
+            font-weight:800;
             letter-spacing:-.01em;
             margin-bottom:28px;
             position:relative;
@@ -726,7 +753,8 @@
         }
     </style>
 </head>
-<body>
+   <script src="background.js"></script>
+</body>
 
 <canvas id="snow-canvas"></canvas>
 <div class="cart-overlay" id="cart-overlay" onclick="closePanels()"></div>
@@ -761,7 +789,7 @@
                 <p style="font-size:17px; font-weight:bold;">Sinh viên Trần Kim Hưng</p>
             </div>
             <div class="founder-card" style="margin-top:15px; border-left:5px solid white;">
-                <h3 style="color:white; margin-bottom:10px;">🏢 Đơn vị</h3>
+                <h3 style="color:#1abc9c; margin-bottom:10px;">🏢 Đơn vị</h3>
                 <p style="font-size:20px; font-weight:800;">FUTU GROUP</p>
             </div>
         </div>
@@ -827,9 +855,9 @@
 
 <span class="tiktok-eyebrow">Futu Tea trên TikTok</span>
 
-<h2>Xem chúng tôi<br>pha những gì bạn yêu thích</h2>
+<h2>cùng chúng tôi<br>trao tiếng cười cho mọi người</h2>
 
-<p>Hậu trường, công thức và khoảnh khắc mỗi ngày tại quán.</p>
+<p>Hậu trường và khoảnh  thú vị mỗi ngày.</p>
 
 <div class="swiper mySwiper">
 
@@ -907,7 +935,7 @@
        target="_blank">
         <i class="fas fa-music"></i>Theo dõi TikTok
     </a>
-    <span class="tiktok-subtext">hoặc <a href="https://www.tiktok.com/@trachanh_futu" target="_blank">xem tất cả video</a></span>
+    <span class="tiktok-subtext"style="font-weight: 600;color:#000000;">hoặc <a href="https://www.tiktok.com/@trachanh_futu" target="_blank" style="color:#FF0000;">xem tất cả video</a></span>
 </div>
 
 </section>
