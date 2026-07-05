@@ -246,5 +246,48 @@ transform:translate(50px,20px);
 100%{
 transform:translate(0,0);
 }
+}
+
+/* ===========================
+   Mobile Performance Mode
+=========================== */
+
+@media (max-width:768px){
+
+    /* Tắt Noise */
+    .noise{
+        display:none;
+    }
+
+    /* Tắt Grid */
+    .grid-overlay{
+        display:none;
+    }
+
+    /* Tắt Spotlight */
+    .spotlight{
+        display:none;
+    }
+
+    /* Giảm Blob */
+    .blob-2,
+    .blob-3{
+        display:none;
+    }
+
+    /* Aurora nhẹ hơn */
+    .aurora{
+        filter:blur(60px);
+        opacity:.55;
+    }
+
+    /* Glow nhẹ hơn */
+    .glow{
+        filter:blur(80px);
+        opacity:.35;
+    }
 
 }
+
+
+
