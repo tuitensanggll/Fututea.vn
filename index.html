@@ -217,6 +217,36 @@
         }
         .bot-msg  { background: rgba(255,255,255,0.12); align-self: flex-start; }
         .user-msg { background: #1abc9c; align-self: flex-end; }
+        .quick-replies {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            align-self: flex-start; max-width: 95%;
+          margin-top: -2px;
+        }
+
+        .quick-reply-btn {
+          background:linear-gradient(-45deg, #142a52, #2a5298, #23a6d5, #1abc9c);
+          border: 1px solid rgba(26,188,156,0.5);
+          color: #fff; font-size: 12.5px;
+          padding: 6px 12px; border-radius: 16px;
+          cursor: pointer; transition: background 0.2s, transform 0.15s;
+          white-space: nowrap;
+        }
+
+        .quick-reply-btn:hover { background: rgba(26,188,156,0.4); transform: scale(1.04); }
+
+        .typing-indicator { display: flex; gap: 4px; padding: 9px 13px; align-self: flex-start; }
+        .typing-indicator span {
+          width: 6px; height: 6px; border-radius: 50%;
+          background: rgba(255,255,255,0.6);
+          animation: typingBounce 1.2s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+    30% { transform: translateY(-4px); opacity: 1; }
+}
 
         .chat-footer {
             padding: 10px 14px;
