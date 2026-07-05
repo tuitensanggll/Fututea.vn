@@ -3,7 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futu Tea Shop</title>
+    <title>Futu Tea Shop – Trà Chanh Tươi Mát Mỗi Ngày | TP.HCM</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Futu Tea Shop – Trà chanh tươi, trà chanh Thái xanh, trà chanh hạt chia pha thủ công. Giao hàng tận nơi tại TP.HCM, mở cửa 08:00–24:00 mỗi ngày. Đặt hàng ngay!">
+    <meta name="keywords" content="trà chanh, futu tea, trà chanh tươi, trà chanh thái xanh, trà chanh hạt chia, quán trà TP.HCM, đặt trà online">
+    <meta name="author" content="Futu Group">
+
+    <!-- Open Graph (Facebook, Zalo) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Futu Tea Shop – Tinh Hoa Trà Việt">
+    <meta property="og:description" content="Trà chanh tươi mát, pha thủ công từng ly. Giao hàng tận nơi tại TP.HCM, mở cửa 08:00–24:00 mỗi ngày.">
+    <meta property="og:image" content="logofutu.jpg">
+    <meta property="og:locale" content="vi_VN">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Futu Tea Shop – Tinh Hoa Trà Việt">
+    <meta name="twitter:description" content="Trà chanh tươi mát, pha thủ công từng ly. Giao hàng tận nơi tại TP.HCM.">
+    <meta name="twitter:image" content="logofutu.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="background.css">
@@ -276,6 +294,102 @@
         }
         #chat-toggle-btn:hover { background: #17a589; transform: scale(1.1); }
         #chat-toggle-btn i { color: white; font-size: 22px; }
+
+        /* ===== HERO BANNER ===== */
+        .hero {
+            position: relative;
+            margin: 10px 5% 0;
+            padding: 70px 8%;
+            border-radius: 32px;
+            overflow: hidden;
+            text-align: center;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(26,188,156,0.35), transparent 55%),
+                radial-gradient(circle at 80% 80%, rgba(35,166,213,0.35), transparent 55%),
+                linear-gradient(135deg, rgba(20,42,82,0.9), rgba(30,60,114,0.9));
+            border: 1px solid rgba(255,255,255,0.18);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+        }
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 12px; font-weight: 800; letter-spacing: 0.1em;
+            text-transform: uppercase; color: #1abc9c;
+            background: rgba(26,188,156,0.15);
+            border: 1px solid rgba(26,188,156,0.4);
+            padding: 6px 16px; border-radius: 30px;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .hero h1 span {
+            background: linear-gradient(90deg, #1abc9c, #23a6d5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero p {
+            font-size: clamp(14px, 1.6vw, 17px);
+            opacity: 0.85;
+            max-width: 520px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        .hero-cta {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: #1abc9c; color: white;
+            font-size: 16px; font-weight: 700;
+            padding: 14px 32px; border-radius: 50px;
+            text-decoration: none; cursor: pointer; border: none;
+            box-shadow: 0 10px 30px rgba(26,188,156,0.4);
+            transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+        }
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            background: #17a589;
+            box-shadow: 0 14px 36px rgba(26,188,156,0.55);
+        }
+        .hero-cta:active { transform: translateY(0) scale(0.97); }
+
+        .hero-stats {
+            display: flex; justify-content: center; flex-wrap: wrap;
+            gap: 36px; margin-top: 40px;
+        }
+        .hero-stat { text-align: center; }
+        .hero-stat b {
+            display: block; font-size: 26px; font-weight: 800; color: #1abc9c;
+        }
+        .hero-stat span { font-size: 12.5px; opacity: 0.75; }
+
+        @media (max-width: 480px) {
+            .hero { padding: 46px 6%; border-radius: 22px; margin: 8px 3% 0; }
+            .hero-stats { gap: 22px; margin-top: 28px; }
+        }
+
+        /* ===== FLY TO CART ANIMATION ===== */
+        .fly-item {
+            position: fixed;
+            z-index: 5000;
+            border-radius: 12px;
+            object-fit: cover;
+            pointer-events: none;
+            transition: left 0.7s cubic-bezier(.22,.61,.36,1),
+                        top 0.7s cubic-bezier(.22,.61,.36,1),
+                        width 0.7s cubic-bezier(.22,.61,.36,1),
+                        height 0.7s cubic-bezier(.22,.61,.36,1),
+                        opacity 0.6s ease 0.15s;
+        }
+        @keyframes cartBounce {
+            0%, 100% { transform: scale(1); }
+            30% { transform: scale(1.35); }
+            50% { transform: scale(0.9); }
+            70% { transform: scale(1.12); }
+        }
+        .cart-bounce { animation: cartBounce 0.5s ease; }
 
         /* ===== PRODUCTS ===== */
         .section-title {
@@ -805,6 +919,21 @@
         </nav>
     </header>
 
+    <!-- HERO BANNER -->
+    <section class="hero" id="hero">
+        <span class="hero-eyebrow">🍃 Futu Tea Shop</span>
+        <h1>Tinh hoa trà Việt,<br><span>trọn vị từ tâm</span></h1>
+        <p>chúng tôi luôn mong muốn mang năng lượng và nụ cười đến ngày mới của bạn.</p>
+        <a class="hero-cta" onclick="document.getElementById('product-grid').scrollIntoView({behavior:'smooth', block:'center'})">
+            <i class="fas fa-mug-hot"></i> Đặt trà ngay
+        </a>
+        <div class="hero-stats">
+            <div class="hero-stat"><b>>50</b><span>Ly trà được bán mỗi ngày</span></div>
+            <div class="hero-stat"><b>4.9★</b><span>Đánh giá khách hàng</span></div>
+            <div class="hero-stat"><b>08:00–24:00</b><span>Mở cửa hằng ngày</span></div>
+        </div>
+    </section>
+
     <!-- FOUNDER PANEL -->
     <div id="founder-view">
         <div class="panel-header">
@@ -1045,7 +1174,7 @@
                 <img src="${p.img}" alt="${p.name}" loading="lazy">
                 <h3>${p.name}</h3>
                 <p>${p.price.toLocaleString('vi-VN')}đ</p>
-                <button class="btn-add" onclick="addToCart(${i})">
+                <button class="btn-add" onclick="addToCart(${i}, event)">
                     <i class="fas fa-plus" style="margin-right:6px"></i>Thêm vào giỏ
                 </button>
             </div>`;
@@ -1056,10 +1185,47 @@
     let cart = [];
     let orderHistory = [];
 
-    function addToCart(idx) {
+    function addToCart(idx, evt) {
         cart.push({ ...products[idx] });
         updateCartUI();
         showToast('Đã thêm ' + products[idx].name + ' vào giỏ 🛒');
+        flyToCart(evt, products[idx].img);
+    }
+
+    function flyToCart(evt, imgSrc) {
+        if (!evt) return;
+        const card = evt.target.closest('.card');
+        const cartIcon = document.querySelector('.cart-icon-wrapper');
+        if (!card || !cartIcon) return;
+
+        const cardImg = card.querySelector('img');
+        const startRect = cardImg.getBoundingClientRect();
+        const endRect = cartIcon.getBoundingClientRect();
+
+        const flyEl = document.createElement('img');
+        flyEl.src = imgSrc;
+        flyEl.className = 'fly-item';
+        flyEl.style.left = startRect.left + 'px';
+        flyEl.style.top = startRect.top + 'px';
+        flyEl.style.width = startRect.width + 'px';
+        flyEl.style.height = startRect.height + 'px';
+        flyEl.style.opacity = '1';
+        document.body.appendChild(flyEl);
+
+        // Bắt đầu animation ở frame kế tiếp
+        requestAnimationFrame(() => {
+            flyEl.style.left = (endRect.left + endRect.width / 2 - 14) + 'px';
+            flyEl.style.top = (endRect.top + endRect.height / 2 - 14) + 'px';
+            flyEl.style.width = '28px';
+            flyEl.style.height = '28px';
+            flyEl.style.opacity = '0.3';
+        });
+
+        setTimeout(() => {
+            flyEl.remove();
+            cartIcon.classList.add('cart-bounce');
+            setTimeout(() => cartIcon.classList.remove('cart-bounce'), 500);
+        }, 700);
     }
 
     function removeFromCart(name) {
