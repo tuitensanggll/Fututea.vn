@@ -1,32 +1,5 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <body>
-    <div id="ai-background">
-
-    <div class="aurora aurora-1"></div>
-    <div class="aurora aurora-2"></div>
-    <div class="aurora aurora-3"></div>
-    <div class="aurora aurora-4"></div>
-
-    <div class="glow glow-left"></div>
-    <div class="glow glow-right"></div>
-
-    <div class="mesh mesh-1"></div>
-    <div class="mesh mesh-2"></div>
-
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-
-    <div class="noise"></div>
-
-    <div class="spotlight"></div>
-
-    <div class="grid-overlay"></div>
-
-    <div class="vignette"></div>
-
-</div>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -462,8 +435,8 @@
             position:absolute;
             inset:0;
             background:
-                radial-gradient(ellipse 400px 240px at 50% -5%, rgba(0,113,227,.05), transparent 70%),
-                radial-gradient(ellipse 400px 240px at 88% 105%, rgba(254,44,85,.035), transparent 70%);
+                radial-gradient(ellipse 420px 240px at 50% -5%, rgba(0,113,227,.05), transparent 65%),
+                radial-gradient(ellipse 340px 240px at 88% 105%, rgba(254,44,85,.035), transparent 60%);
             pointer-events:none;
             z-index:0;
         }
@@ -472,7 +445,7 @@
             display:inline-flex;
             align-items:center;
             gap:10px;
-            font-size:13px;
+            font-size:12px;
             font-weight:800;
             letter-spacing:.08em;
             text-transform:uppercase;
@@ -486,7 +459,7 @@
         }
         .tiktok-eyebrow::before{
             content:"";
-            width:10px; height:10px; border-radius:100%;
+            width:7px; height:7px; border-radius:50%;
             background:linear-gradient(135deg,#25f4ee,#fe2c55);
             display:inline-block;
         }
@@ -753,8 +726,34 @@
         }
     </style>
 </head>
+<body>
+    <div id="ai-background">
+
+    <div class="aurora aurora-1"></div>
+    <div class="aurora aurora-2"></div>
+    <div class="aurora aurora-3"></div>
+    <div class="aurora aurora-4"></div>
+
+    <div class="glow glow-left"></div>
+    <div class="glow glow-right"></div>
+
+    <div class="mesh mesh-1"></div>
+    <div class="mesh mesh-2"></div>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="noise"></div>
+
+    <div class="spotlight"></div>
+
+    <div class="grid-overlay"></div>
+
+    <div class="vignette"></div>
+
+</div>
    <script src="background.js"></script>
-</body>
 
 <canvas id="snow-canvas"></canvas>
 <div class="cart-overlay" id="cart-overlay" onclick="closePanels()"></div>
@@ -1353,9 +1352,9 @@ spaceBetween:22,
 
 loop:true,
 
-loopAdditionalSlides:6,
+loopAdditionalSlides:3,
 
-loopedSlides:6,
+loopedSlides:3,
 
 speed:900,
 
