@@ -2,6 +2,8 @@
 // AI Background v1.0
 // ============================================
 
+const isMobile = window.innerWidth <= 768;
+
 const spotlight = document.querySelector(".spotlight");
 
 let mouseX = window.innerWidth / 2;
@@ -28,9 +30,7 @@ function animateSpotlight() {
     requestAnimationFrame(animateSpotlight);
 }
 
-animateSpotlight();
-
-
+ animateSpotlight();
 
 // ===========================
 // Blob Parallax
@@ -53,8 +53,6 @@ document.addEventListener("mousemove", (e) => {
     });
 
 });
-
-
 
 
 // ===========================
@@ -85,8 +83,6 @@ function animateAurora() {
 animateAurora();
 
 
-
-
 // ===========================
 // Floating Glow
 // ===========================
@@ -114,8 +110,6 @@ function animateGlow() {
 }
 
 animateGlow();
-
-
 
 
 // ===========================
