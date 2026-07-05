@@ -213,6 +213,13 @@
         .info-input:focus { border-color: #1abc9c; }
         .info-input::placeholder { color: rgba(255,255,255,0.4); }
         label { font-size: 13px; opacity: 0.8; }
+        .input-error {
+            border-color: #ff4757 !important;
+            box-shadow: 0 0 0 2px rgba(255,71,87,0.25);
+        }
+        .field-error-msg {
+            color: #ff6b78; font-size: 12px; margin: -10px 0 12px; display: none;
+        }
 
         /* ===== CHAT ===== */
         .chat-header {
@@ -483,6 +490,49 @@
             transition: background 0.2s;
         }
         .btn-done:hover { background: #17a589; }
+
+        /* ===== CẢNH BÁO NHẤP NHÁY NHẸ (Lưu ý chuyển khoản) ===== */
+        /* Chữ và nền giữ ổn định để dễ đọc, chỉ viền + quầng sáng "thở" đều để thu hút chú ý mà không chói mắt */
+        .payment-warning {
+            margin-top: 14px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 2px solid #ff4757;
+            background: rgba(255,71,87,0.07);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #d8303f;
+            text-align: left;
+            animation: warningGlow 2s ease-in-out infinite;
+        }
+        .payment-warning i {
+            font-size: 16px;
+            flex-shrink: 0;
+            color: #ff4757;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+        @keyframes warningGlow {
+            0%, 100% {
+                border-color: rgba(255,71,87,0.35);
+                box-shadow: 0 0 0 rgba(255,71,87,0);
+                background: rgba(255,71,87,0.05);
+            }
+            50% {
+                border-color: #ff4757;
+                box-shadow: 0 0 10px rgba(255,71,87,0.3);
+                background: rgba(255,71,87,0.1);
+            }
+        }
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); opacity: 0.75; }
+            50%      { transform: scale(1.15); opacity: 1; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .payment-warning, .payment-warning i { animation: none; }
+        }
 
         /* ===== FOOTER ===== */
         footer {
@@ -982,7 +1032,8 @@
             <label>Họ và Tên</label>
             <input type="text" id="user-name" class="info-input" placeholder="Họ và Tên">
             <label>Số điện thoại</label>
-            <input type="tel" id="user-phone" class="info-input" placeholder="090...">
+            <input type="tel" id="user-phone" class="info-input" placeholder="VD: 0912345678" maxlength="10" inputmode="numeric">
+            <div class="field-error-msg" id="phone-error-msg">Số điện thoại không hợp lệ (phải đủ 10 số, bắt đầu bằng 03/05/07/08/09)</div>
             <label>Địa chỉ giao hàng</label>
             <textarea id="user-address" class="info-input" style="height:80px;resize:none;" placeholder="Số nhà, tên đường..."></textarea>
             <label>Ghi chú <span style="color:rgba(255,255,255,0.4);font-size:12px;">(không bắt buộc)</span></label>
@@ -1148,7 +1199,10 @@
         <img src="qrthanhtoan.jpg"
      style="width:250px;height:auto;margin:15px 0;border-radius:12px;border:1px solid #0b9504ff;">
         <div class="payment-total" id="qr-total-text"></div>
-        <p style="font-size:13px;color:#888;">Lưu ý Chuyển khoản theo mã QR thành công rồi bấm hoàn tất để đảm bảo quyền lợi của khách hàng</p>
+        <div class="payment-warning">
+            <i class="fas fa-triangle-exclamation"></i>
+            <span>Lưu ý: Chuyển khoản theo mã QR thành công rồi bấm hoàn tất để đảm bảo quyền lợi của khách hàng!</span>
+        </div>
         <button class="btn-done" onclick="finishPayment()">
             <i class="fas fa-check" style="margin-right:6px"></i>Hoàn tất thanh toán
         </button>
@@ -1332,18 +1386,52 @@
         document.getElementById('cart-view').style.display = 'flex';
     }
 
+    /* ===== VALIDATE SỐ ĐIỆN THOẠI VIỆT NAM =====
+       Chuẩn: 10 số, bắt đầu bằng đầu số di động hợp lệ
+       03x, 05x, 07x, 08x, 09x (Viettel, Mobifone, Vinaphone, Vietnamobile, Gmobile) */
+    function isValidVNPhone(phone) {
+        const cleaned = phone.replace(/[\s.\-]/g, '');
+        return /^(0(3[2-9]|5[2|5|6|8|9]|7[0|6|7|8|9]|8[1-9]|9[0-9]))[0-9]{7}$/.test(cleaned);
+    }
+
     function proceedToPayment() {
         const name    = document.getElementById('user-name').value.trim();
-        const phone   = document.getElementById('user-phone').value.trim();
+        const phoneEl = document.getElementById('user-phone');
+        const phone   = phoneEl.value.trim();
         const address = document.getElementById('user-address').value.trim();
+        const phoneErrorMsg = document.getElementById('phone-error-msg');
+
         if (!name || !phone || !address) {
             showToast('Vui lòng nhập đầy đủ Tên, SĐT và Địa chỉ!');
             return;
         }
+
+        if (!isValidVNPhone(phone)) {
+            phoneEl.classList.add('input-error');
+            phoneErrorMsg.style.display = 'block';
+            phoneEl.focus();
+            showToast('Số điện thoại không hợp lệ! Vui lòng kiểm tra lại 📵');
+            return;
+        }
+
+        phoneEl.classList.remove('input-error');
+        phoneErrorMsg.style.display = 'none';
+
         const total = cart.reduce((s,i) => s+i.price, 0);
         document.getElementById('qr-total-text').textContent = 'Tổng tiền: ' + total.toLocaleString('vi-VN') + 'đ';
         document.getElementById('qr-modal').style.display = 'flex';
     }
+
+    // Bỏ báo lỗi ngay khi khách gõ lại số điện thoại
+    document.addEventListener('DOMContentLoaded', () => {
+        const phoneEl = document.getElementById('user-phone');
+        if (phoneEl) {
+            phoneEl.addEventListener('input', () => {
+                phoneEl.classList.remove('input-error');
+                document.getElementById('phone-error-msg').style.display = 'none';
+            });
+        }
+    });
 
     function finishPayment() {
         const total = cart.reduce((s,i) => s+i.price, 0);
